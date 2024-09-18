@@ -1,3 +1,4 @@
+`use strict`
 /*
 1. Создайте функцию mergeArrays, которая принимает два
 массива и возвращает новый массив, содержащий все
@@ -41,7 +42,7 @@ console.log(removeDuplicates(1, 2, 3, 2, 4, 1, 5, 1, 4, 3, 1, 4, 3,));
 */
 
 const getEvenNumbers = (arr) => {
-    return arr.filter((val) => val % 2 === 0);
+    return arr.filter(val => val % 2 === 0);
 
 }
 console.log(getEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
@@ -53,10 +54,7 @@ console.log(getEvenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]));
 */
 
 const calculateAverage = (args) => {
-
-
-
-    let avg = args.reduce((acc, element) => acc + element, 0) / args.lenght;
+    const avg = args.reduce((acc, element) => acc + element, 0) / args.length
     return avg;
 
 };
@@ -71,8 +69,98 @@ console.log(calculateAverage([0, 1, 2, 3, 4, 5, 6]));
 */
 
 const capitalizeFirstLetter = (string) => {
-    return string.replace(/(^|\s)\S/g, function (a) { return a.toUpperCase() });
+    return string.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    //return string.replace(/(^|\s)\S/g, function (a) { return a.toUpperCase() });
 }
 
-console.log(capitalizeFirstLetter(""));
+console.log(capitalizeFirstLetter("йцу йцу йцу"));
+
+
+
+/*
+1. Напишите функцию createCalculator, которая принимает начальное
+значение и возвращает объект с двумя методами: add и subtract.
+Метод add должен увеличивать значение на переданное число, а
+метод subtract должен уменьшать значение на переданное число.
+Значение должно быть доступно только через методы объекта, а не
+напрямую.
+*/
+
+const createCalculator = (number) => {
+    return {
+        add(num) {
+            return number + num;
+        },
+
+        substract(num) {
+            return number - +num
+        }
+    };
+}
+
+const newNumber = createCalculator(10);
+console.log(newNumber.add(5));
+console.log(newNumber.substract(5));
+
+
+
+/*
+1. Напишите функцию createGreeting, которая принимает имя
+пользователя и возвращает функцию, которая будет выводить
+приветствие с использованием этого имени.
+// Пример использования:
+const greeting = createGreeting('John');
+greeting(); // Ожидаемый результат: "Hello, John!"
+*/
+
+function createGreeting(nameForGreet) {
+    return function greeting() {
+        console.log(`Hello, ${nameForGreet}!`);
+    }
+}
+
+
+const greeting = createGreeting('John');
+greeting(); // Ожидаемый результат: "Hello, John!"
+
+
+
+/*
+ Задача: Напишите функцию createPasswordChecker, которая
+принимает допустимую длину пароля в качестве аргумента и
+возвращает функцию для проверки введенного пароля.
+Возвращаемая функция должна принимать пароль и возвращать
+true, если его длина соответствует допустимой, и false в противном
+случае.
+// Пример использования:
+const isPasswordValid = createPasswordChecker(8);
+console.log(isPasswordValid('password')); // Ожидаемый результат:
+false
+console.log(isPasswordValid('secret')); // Ожидаемый результат: true
+*/
+
+const createPasswordChecker = (length) => {
+    const passLength = length;
+    return function isPasswordValid(password) {
+        password.length < passLength ? true : false;
+    }
+
+}
+
+const isPasswordValid = createPasswordChecker(8);
+console.log(isPasswordValid('password')); // Ожидаемый результат: false
+console.log(isPasswordValid('secret')); // Ожидаемый результат: true
+
+
+
+
+/*
+Напишите рекурсивную функцию sumDigits, которая принимает
+положительное целое число в качестве аргумента и возвращает
+сумму его цифр.
+// Пример использования:
+console.log(sumDigits(123)); // Ожидаемый результат: 6 (1 + 2 + 3)
+console.log(sumDigits(456789)); // Ожидаемый результат: 39 (4 + 5 + 6
++ 7 + 8 + 9)
+*/
 
