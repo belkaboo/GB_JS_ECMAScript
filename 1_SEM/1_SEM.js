@@ -93,7 +93,7 @@ const createCalculator = (number) => {
         },
 
         substract(num) {
-            return number - +num
+            return number - num
         }
     };
 }
@@ -140,9 +140,8 @@ console.log(isPasswordValid('secret')); // Ожидаемый результат
 */
 
 const createPasswordChecker = (length) => {
-    const passLength = length;
     return function isPasswordValid(password) {
-        password.length < passLength ? true : false;
+        return password.length < length;
     }
 
 }
@@ -164,3 +163,12 @@ console.log(sumDigits(456789)); // Ожидаемый результат: 39 (4 
 + 7 + 8 + 9)
 */
 
+const sumDigits = (num) => {
+    if (num < 10) {
+        return num;
+    }
+    return num % 10 + sumDigits(Math.floor(num / 10));
+}
+
+console.log(sumDigits(123));
+console.log(sumDigits(456789));
