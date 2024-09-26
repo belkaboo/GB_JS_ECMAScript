@@ -16,8 +16,8 @@ Person.changeName("Mike");
 
 
 const Persona = {
-    name: 'Jo',
-    age: '',
+    name: '',
+    age: 0,
     gender: '',
 
     changeName(name) {

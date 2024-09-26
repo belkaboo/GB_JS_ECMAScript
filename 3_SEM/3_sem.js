@@ -8,6 +8,16 @@ Object.prototype.
 
 //todo
 
+const getPrototypeChain = (obj) => {
+    const currentObject = obj;
+    let result = [];
+    while (currentObject !== null) {
+        result.push(currentObject);
+        currentObject = Object.getPrototypeOf(currentObject);
+    }
+
+    return result;
+}
 
 const obg = {};
 const prototypeChain = getPrototypeChain(obj);
@@ -26,6 +36,30 @@ console.log((prototypeChain));
 принесла мяч.".
 */
 
+class Animal {
+    constructor(name) {
+        this.name = name;
+    }
+    speak() {
+        console.log('blablabla');
+    }
+}
+
+class Dog extends Animal {
+    constructor(name, breed) {
+        super(name);
+        this.breed = breed;
+    }
+    fetch() {
+        console.log(`Собака ${this.name} принесла мяч.`);
+    }
+}
+
+const animal = new Animal('Animal');
+const dog1 = new Dog('Bobik', 'Dvornyaga');
+dog1.speak();
+console.log(dog1.breed);
+dog1.fetch();
 
 
 
@@ -43,6 +77,38 @@ console.log((prototypeChain));
 (может быть равна 0, если корзина пуста).
 начальная общая СТОИМОСТЬ заказа может быть равна 0, корзина пуста
 */
+
+class Product {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+}
+
+class ShoppingCart {
+    constructor(costumerName, initialTotalCost = 0) {
+        this.costumerName = costumerName;
+        this.initialTotalCost = initialTotalCost;
+    }
+
+
+    addItem(product, quantity = 1) {
+
+
+    };
+    getCurretnTotalCoast() {
+
+    }
+
+    checkout() {
+        console.log(`Заказ оформлен для ${this.costumerName}. Общая стоимость заказа ${this.getCurretnTotalCoast()}рублей. Спасибо за покупку`);
+    }
+}
+
+
+
+
+
 
 
 
